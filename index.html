@@ -6,7 +6,6 @@
     <title>Marmitex da Casa - O Melhor Marmitex da Região com Cardápio Diário!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Meta tags para WhatsApp -->
     <meta property="og:title" content="🍱 MARMITEZÃO DA CASA - CARDÁPIO DIÁRIO EXCLUSIVO!">
     <meta property="og:description" content="ESTÁ COM FOME? NÃO ALMOÇOU? 🍚 TENHO AQUI O MARMITEZÃO MAIS COMPLETO DA REGIÃO! ⭐⭐⭐⭐⭐ CARDÁPIO DIFERENTE CADA DIA!">
     <meta property="og:image" content="https://anshulaprashad.github.io/marmitex/marmitex2.jpg">
@@ -14,7 +13,6 @@
     <meta property="og:type" content="website">
 
     <style>
-        /* ESTILO GERAL */
         * {
             margin: 0;
             padding: 0;
@@ -39,7 +37,6 @@
             overflow-x: hidden;
         }
 
-        /* BARRA DE URGÊNCIA */
         .urgency-bar {
             background: linear-gradient(90deg, var(--appetite-red), var(--golden-yellow));
             padding: 16px;
@@ -73,7 +70,6 @@
             margin-left: 10px;
         }
 
-        /* LIVE PROOF BANNER */
         .live-proof-banner {
             background: rgba(139, 69, 19, 0.9);
             color: var(--golden-yellow);
@@ -89,7 +85,6 @@
             padding: 5px 0;
         }
 
-        /* HEADER */
         header {
             background: rgba(28, 28, 30, 0.95);
             backdrop-filter: blur(20px);
@@ -166,7 +161,6 @@
             box-shadow: 0 12px 35px rgba(52, 199, 89, 0.7);
         }
 
-        /* HERO SECTION */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -250,14 +244,171 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* PRICE CARD */
-        .price-card {
+        /* CARROSSEL PROFISSIONAL */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 
+                0 0 70px rgba(255, 204, 0, 0.7),
+                0 0 140px rgba(255, 59, 48, 0.5),
+                inset 0 0 70px rgba(0,0,0,0.4);
+            border: 8px solid rgba(255, 204, 0, 0.4);
+            background: rgba(28, 28, 30, 0.9);
+            height: 500px;
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* Efeito de vapor no carrossel */
+        .steam-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .steam-particle {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7), transparent 70%);
+            border-radius: 50%;
+            animation: steamRise 5s ease-in-out infinite;
+            filter: blur(15px);
+        }
+
+        @keyframes steamRise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-200px) scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        .steam-particle:nth-child(1) { left: 20%; animation-delay: 0s; }
+        .steam-particle:nth-child(2) { left: 40%; animation-delay: 0.7s; }
+        .steam-particle:nth-child(3) { left: 60%; animation-delay: 1.4s; }
+        .steam-particle:nth-child(4) { left: 80%; animation-delay: 2.1s; }
+
+        /* Controles do carrossel */
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid var(--golden-yellow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--golden-yellow);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px var(--golden-yellow);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid var(--golden-yellow);
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 204, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        /* Indicador de slide atual */
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 10;
+            border: 1px solid var(--golden-yellow);
+        }
+
+        /* CARD ÚNICO COM 3 TAMANHOS */
+        .tamanhos-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .tamanhos-card {
             background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(44, 44, 46, 0.9));
             border: 3px solid var(--golden-yellow);
             border-radius: 35px;
-            padding: 30px;
-            margin: 30px auto;
-            max-width: 550px;
+            padding: 40px;
             position: relative;
             overflow: hidden;
             transform: perspective(1000px) rotateX(2deg);
@@ -267,12 +418,12 @@
                 inset 0 1px 0 rgba(255,255,255,0.1);
         }
 
-        .price-card:hover {
+        .tamanhos-card:hover {
             transform: perspective(1000px) rotateX(0deg) translateY(-12px);
         }
 
-        .price-card::before {
-            content: '🔥';
+        .tamanhos-card::before {
+            content: '🍱';
             position: absolute;
             top: -30px;
             right: -30px;
@@ -286,67 +437,135 @@
             to { transform: rotate(360deg); }
         }
 
-        .marmitex-name {
+        .tamanhos-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tamanhos-header h3 {
+            font-size: 2.2rem;
+            color: var(--golden-yellow);
+            margin-bottom: 15px;
+        }
+
+        .tamanhos-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .tamanhos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .tamanhos-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .tamanho-item {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .tamanho-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 204, 0, 0.3);
+        }
+
+        .tamanho-item.selecionado {
+            border-color: var(--fresh-green);
+            background: rgba(52, 199, 89, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .tamanho-item.destaque {
+            border-color: var(--appetite-red);
+        }
+
+        .tamanho-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, var(--appetite-red), var(--golden-yellow));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .tamanho-icone {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .tamanho-nome {
             font-size: 1.8rem;
             font-weight: 900;
             color: var(--golden-yellow);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: var(--text-gray);
-            font-size: 1.8rem;
-            display: block;
             margin-bottom: 10px;
         }
 
-        .new-price {
-            font-size: 5rem;
+        .tamanho-preco {
+            font-size: 2.8rem;
             font-weight: 900;
             background: linear-gradient(135deg, var(--golden-yellow), var(--appetite-red));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            display: block;
-            margin-bottom: 20px;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
         }
 
-        .price-subtitle {
+        .tamanho-descricao {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* BOTÃO DE PEDIDO */
+        .pedido-final {
+            background: rgba(44, 44, 46, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid var(--golden-yellow);
+            margin-top: 30px;
+        }
+
+        .pedido-selecionado {
+            font-size: 1.3rem;
             color: var(--text-light);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        /* BOTÃO PRINCIPAL */
-        .button-container {
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 0 20px;
+        .pedido-selecionado strong {
+            color: var(--golden-yellow);
         }
 
-        .btn-promocao-grande {
+        .btn-pedir-whatsapp {
             display: block;
             width: 100%;
-            padding: 20px 25px;
+            padding: 20px;
             background: linear-gradient(45deg, #25D366, #128C7E);
             color: white;
             font-size: 1.3rem;
             font-weight: 900;
-            text-align: center;
-            border-radius: 20px;
+            border-radius: 15px;
             text-decoration: none;
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+            border: 3px solid white;
             transition: all 0.3s ease;
-            border: 4px solid white;
-            margin-bottom: 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             animation: pulseCta 2s infinite;
         }
 
@@ -355,268 +574,9 @@
             50% { transform: scale(1.03); }
         }
 
-        .btn-promocao-grande:hover {
+        .btn-pedir-whatsapp:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.6);
-        }
-
-        /* NOVO MODAL COM OPÇÕES DE MARMITEX */
-        .opcoes-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .opcoes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .opcao-card {
-            background: linear-gradient(135deg, rgba(139, 69, 19, 0.8), rgba(44, 44, 46, 0.9));
-            border: 3px solid var(--golden-yellow);
-            border-radius: 25px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .opcao-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 204, 0, 0.4);
-        }
-
-        .opcao-card.destaque {
-            border-color: var(--appetite-red);
-            transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(255, 59, 48, 0.5);
-        }
-
-        .opcao-card.destaque:hover {
-            transform: scale(1.08) translateY(-5px);
-        }
-
-        .opcao-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, var(--appetite-red), var(--golden-yellow));
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-weight: 900;
-            font-size: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .opcao-tamanho {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--golden-yellow);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .opcao-preco {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--golden-yellow), var(--appetite-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-            margin-bottom: 20px;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .opcao-descricao {
-            color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            min-height: 60px;
-        }
-
-        .opcao-btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #25D366, #128C7E);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: 2px solid white;
-        }
-
-        .opcao-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
-        }
-
-        /* MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #2c1c10, #1a0f0a);
-            margin: 10% auto;
-            padding: 25px;
-            border-radius: 30px;
-            width: 90%;
-            max-width: 450px;
-            text-align: center;
-            animation: modalAppear 0.5s;
-            border: 3px solid var(--golden-yellow);
-            position: relative;
-        }
-
-        @keyframes modalAppear {
-            from {transform: scale(0.5); opacity: 0;}
-            to {transform: scale(1); opacity: 1;}
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--golden-yellow);
-        }
-
-        .modal-content h2 {
-            font-size: 1.8rem;
-            color: var(--golden-yellow);
-            margin-bottom: 20px;
-        }
-
-        .modal-content p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: white;
-        }
-
-        .btn-whatsapp-modal {
-            display: inline-block;
-            padding: 18px 30px;
-            background: linear-gradient(45deg, #25D366, #128C7E);
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 900;
-            border-radius: 15px;
-            text-decoration: none;
-            animation: pulse 1.5s infinite;
-            text-transform: uppercase;
-            border: 3px solid white;
-        }
-
-        @keyframes pulse {
-            0% {transform: scale(1);}
-            50% {transform: scale(1.05);}
-            100% {transform: scale(1);}
-        }
-
-        /* MARMITEZÃO SHOWCASE */
-        .marmitex-showcase {
-            position: relative;
-            width: 450px;
-            height: 450px;
-            margin: 60px auto;
-            animation: marmitexFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes marmitexFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(5deg); }
-        }
-
-        .steam {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: -60px;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .steam-particle {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, rgba(255,255,255,0.6), transparent);
-            border-radius: 50%;
-            animation: steamRise 4s ease-in-out infinite;
-        }
-
-        @keyframes steamRise {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-180px) scale(1.8);
-                opacity: 0;
-            }
-        }
-
-        .steam-particle:nth-child(1) { left: 25%; animation-delay: 0s; }
-        .steam-particle:nth-child(2) { left: 50%; animation-delay: 0.7s; }
-        .steam-particle:nth-child(3) { left: 75%; animation-delay: 1.4s; }
-
-        .marmitex-slider {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 
-                0 0 70px rgba(255, 204, 0, 0.7),
-                0 0 140px rgba(255, 59, 48, 0.5),
-                inset 0 0 70px rgba(0,0,0,0.4);
-            border: 8px solid rgba(255, 204, 0, 0.4);
-        }
-
-        .slider-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            border-radius: 20px;
-        }
-
-        .slider-img.active {
-            opacity: 1;
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
         }
 
         /* CARDÁPIOS DIÁRIOS */
@@ -636,6 +596,7 @@
             box-shadow: 0 15px 40px rgba(255, 204, 0, 0.2);
             position: relative;
             overflow: hidden;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .cardapio-dia::before {
@@ -707,17 +668,6 @@
             font-size: 3rem;
             margin-bottom: 15px;
             display: block;
-        }
-
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px) scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
         }
 
         /* FINAL CTA */
@@ -833,58 +783,30 @@
 
         /* RESPONSIVO */
         @media (max-width: 768px) {
-            .modal-content {
-                width: 90%;
-                margin: 15% auto;
-                padding: 20px;
+            .carousel-container {
+                height: 350px;
+                max-width: 90%;
             }
             
-            .modal-content h2 {
-                font-size: 1.5rem;
+            .tamanhos-card {
+                padding: 25px;
             }
             
-            .btn-whatsapp-modal {
-                padding: 15px 25px;
-                font-size: 1rem;
+            .tamanhos-header h3 {
+                font-size: 1.8rem;
+            }
+            
+            .tamanho-preco {
+                font-size: 2.2rem;
             }
             
             .hero h2 {
                 font-size: 2.5rem;
             }
 
-            .new-price {
-                font-size: 3.5rem;
-            }
-
-            .btn-promocao-grande {
+            .btn-pedir-whatsapp {
                 font-size: 1.1rem;
-                padding: 15px 20px;
-            }
-
-            .marmitex-showcase {
-                width: 320px;
-                height: 320px;
-            }
-
-            .opcoes-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .opcao-card.destaque {
-                transform: scale(1.02);
-            }
-
-            .opcao-card.destaque:hover {
-                transform: scale(1.05) translateY(-5px);
-            }
-
-            .opcao-tamanho {
-                font-size: 1.8rem;
-            }
-
-            .opcao-preco {
-                font-size: 2.8rem;
+                padding: 15px;
             }
 
             .header-container {
@@ -909,6 +831,31 @@
                 right: 10px;
                 padding: 6px 15px;
                 font-size: 14px;
+            }
+            
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .carousel-nav.prev {
+                left: 10px;
+            }
+            
+            .carousel-nav.next {
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .carousel-container {
+                height: 280px;
+            }
+            
+            .carousel-dot {
+                width: 8px;
+                height: 8px;
             }
         }
     </style>
@@ -950,104 +897,117 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="badge">🎯 PROMOÇÃO RELÂMPAGO: CARDÁPIO ESPECIAL DO DIA!</div>
+            <div class="badge" id="badge-dia">🎯 PROMOÇÃO RELÂMPAGO: CARDÁPIO ESPECIAL DO DIA!</div>
             
-            <h2 id="titulo-dia">ESTÁ COM FOME? 😫NÃO ALMOÇOU?</h2>
+            <h2 id="titulo-dia"></h2>
             
             <p>🍚 <strong>TENHO AQUI O MARMITEZÃO MAIS COMPLETO DA REGIÃO!</strong> ⭐⭐⭐⭐⭐</p>
             <p>🎁 <strong>CARDÁPIO ESPECIAL:</strong> Menu diferente cada dia da semana!</p>
 
-            <div class="price-card">
-                <div class="marmitex-name">🍱 MARMITEX GRANDE</div>
-                <span class="old-price">DE R$ 38,90</span>
-                <span class="new-price">R$ 21,90</span>
-                <p class="price-subtitle">ARROZ, FEIJÃO, CARNE, SALADA, FAROFA E MUITO MAIS!</p>
+            <!-- CARROSSEL PROFISSIONAL -->
+            <div class="carousel-container">
+                <div class="steam-effect">
+                    <div class="steam-particle"></div>
+                    <div class="steam-particle"></div>
+                    <div class="steam-particle"></div>
+                    <div class="steam-particle"></div>
+                </div>
+                
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="https://anshulaprashad.github.io/marmitex/marmita20.png" 
+                             alt="Marmitex Completo 1" loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://anshulaprashad.github.io/marmitex/marmita21.png" 
+                             alt="Marmitex Completo 2" loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://anshulaprashad.github.io/marmitex/marmita25.png" 
+                             alt="Marmitex Completo 3" loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://anshulaprashad.github.io/marmitex/marmita24.png" 
+                             alt="Marmitex Completo 4" loading="lazy">
+                    </div>
+                </div>
+                
+                <div class="slide-counter">
+                    <span id="current-slide">1</span> / <span id="total-slides">4</span>
+                </div>
+                
+                <button class="carousel-nav prev" onclick="prevSlide()">❮</button>
+                <button class="carousel-nav next" onclick="nextSlide()">❯</button>
+                
+                <div class="carousel-controls" id="carousel-dots">
+                    <!-- Dots serão gerados via JavaScript -->
+                </div>
             </div>
 
-            <!-- Botão Principal ÚNICO -->
-            <div class="button-container">
-                <a href="#" id="btn-promocao" class="btn-promocao-grande">
-                    🚀 QUERO MEU MARMITEZÃO DO DIA AGORA!
-                </a>
+            <!-- CARD ÚNICO COM OS 3 TAMANHOS -->
+            <div class="tamanhos-container">
+                <div class="tamanhos-card">
+                    <div class="tamanhos-header">
+                        <h3>🍱 ESCOLHA SEU TAMANHO 🍱</h3>
+                        <p>Clique para selecionar e pedir pelo WhatsApp!</p>
+                    </div>
+                    
+                    <div class="tamanhos-grid">
+                        <!-- TAMANHO P -->
+                        <div class="tamanho-item" onclick="selecionarTamanho('P', '17.90')">
+                            <div class="tamanho-tag">POPULAR</div>
+                            <div class="tamanho-icone">🍱</div>
+                            <div class="tamanho-nome">MARMITEX P</div>
+                            <div class="tamanho-preco">R$ 17,90</div>
+                            <div class="tamanho-descricao">
+                                Ideal para fome moderada
+                            </div>
+                        </div>
+
+                        <!-- TAMANHO M -->
+                        <div class="tamanho-item" onclick="selecionarTamanho('M', '19.90')">
+                            <div class="tamanho-tag">MAIS PEDIDO</div>
+                            <div class="tamanho-icone">🍱</div>
+                            <div class="tamanho-nome">MARMITEX M</div>
+                            <div class="tamanho-preco">R$ 19,90</div>
+                            <div class="tamanho-descricao">
+                                Tamanho ideal para maioria
+                            </div>
+                        </div>
+
+                        <!-- TAMANHO G -->
+                        <div class="tamanho-item destaque selecionado" onclick="selecionarTamanho('G', '21.90')">
+                            <div class="tamanho-tag">⭐ RECOMENDADO</div>
+                            <div class="tamanho-icone">🍱</div>
+                            <div class="tamanho-nome">MARMITEX G</div>
+                            <div class="tamanho-preco">R$ 21,90</div>
+                            <div class="tamanho-descricao">
+                                Mais completo e vantajoso
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ÁREA DE PEDIDO -->
+                    <div class="pedido-final">
+                        <div class="pedido-selecionado">
+                            🛒 <strong>PEDIDO SELECIONADO:</strong> 
+                            <span id="tamanho-selecionado">MARMITEX G</span> - 
+                            <span id="preco-selecionado">R$ 21,90</span>
+                        </div>
+                        
+                        <a href="#" id="btn-pedir-whatsapp" class="btn-pedir-whatsapp" target="_blank">
+                            🚀 PEDIR AGORA PELO WHATSAPP
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- NOVAS OPÇÕES DE MARMITEX -->
-    <section class="opcoes-container">
-        <h2 style="text-align: center; color: var(--golden-yellow); font-size: 2.5rem; margin-bottom: 20px;">
-            🍱 ESCOLHA SEU TAMANHO 🍱
-        </h2>
-        <p style="text-align: center; color: var(--text-light); font-size: 1.2rem; margin-bottom: 30px;">
-            Temos o tamanho perfeito para sua fome! Todos incluem arroz, feijão, carne, salada e farofa!
-        </p>
+    <!-- CARDÁPIO DO DIA -->
+    <section class="cardapios-container">
+        <!-- Cardápios serão mostrados dinamicamente via JavaScript -->
         
-        <div class="opcoes-grid">
-            <!-- MARMITEX P -->
-            <div class="opcao-card" onclick="selecionarOpcao('P', '17.90')">
-                <div class="opcao-tag">POPULAR</div>
-                <div class="opcao-tamanho">🍱 MARMITEX P</div>
-                <div class="opcao-preco">R$ 17,90</div>
-                <div class="opcao-descricao">
-                    Ideal para quem tem fome moderada! Porção perfeita para uma refeição saborosa e satisfatória.
-                </div>
-                <a href="https://wa.me/5511999999999?text= 🍱%20QUERO%20O%20MARMITEX%20P%20POR%20R%24%2017%2C90%21%0A%0A👉%20Tamanho%3A%20P%20(Pequeno)%0A👉%20Pre%C3%A7o%3A%20R%24%2017%2C90%0A👉%20Quero%20o%20card%C3%A1pio%20de%20hoje%0A%0A🚀%20ENVIA%20MEU%20PEDIDO%21" 
-                   class="opcao-btn" target="_blank">
-                    PEDIR AGORA
-                </a>
-            </div>
-
-            <!-- MARMITEX M -->
-            <div class="opcao-card" onclick="selecionarOpcao('M', '19.90')">
-                <div class="opcao-tag">MAIS PEDIDO</div>
-                <div class="opcao-tamanho">🍱 MARMITEX M</div>
-                <div class="opcao-preco">R$ 19,90</div>
-                <div class="opcao-descricao">
-                    Tamanho ideal para a maioria! Porção balanceada que deixa todo mundo satisfeito.
-                </div>
-                <a href="https://wa.me/5511999999999?text= 🍱%20QUERO%20O%20MARMITEX%20M%20POR%20R%24%2019%2C90%21%0A%0A👉%20Tamanho%3A%20M%20(M%C3%A9dio)%0A👉%20Pre%C3%A7o%3A%20R%24%2019%2C90%0A👉%20Quero%20o%20card%C3%A1pio%20de%20hoje%0A%0A🚀%20ENVIA%20MEU%20PEDIDO%21" 
-                   class="opcao-btn" target="_blank">
-                    PEDIR AGORA
-                </a>
-            </div>
-
-            <!-- MARMITEX G (DESTAQUE) -->
-            <div class="opcao-card destaque" onclick="selecionarOpcao('G', '21.90')">
-                <div class="opcao-tag">⭐ RECOMENDADO</div>
-                <div class="opcao-tamanho">🍱 MARMITEX G</div>
-                <div class="opcao-preco">R$ 21,90</div>
-                <div class="opcao-descricao">
-                    O mais completo e vantajoso! Porção generosa para quem tem muita fome ou quer dividir.
-                </div>
-                <a href="https://wa.me/5511999999999?text= 🍱%20QUERO%20O%20MARMITEX%20G%20POR%20R%24%2021%2C90%21%0A%0A👉%20Tamanho%3A%20G%20(Grande)%0A👉%20Pre%C3%A7o%3A%20R%24%2021%2C90%0A👉%20Quero%20o%20card%C3%A1pio%20de%20hoje%0A%0A🚀%20ENVIA%20MEU%20PEDIDO%21" 
-                   class="opcao-btn" target="_blank">
-                    🚀 MELHOR OFERTA
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marmitex Showcase com Slider -->
-    <div class="marmitex-showcase">
-        <div class="steam">
-            <div class="steam-particle"></div>
-            <div class="steam-particle"></div>
-            <div class="steam-particle"></div>
-        </div>
-        <div class="marmitex-slider">
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Marmitex Completo" class="slider-img active">
-            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Marmitex com Carne" class="slider-img">
-            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Marmitex de Frango" class="slider-img">
-            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Marmitex Variado" class="slider-img">
-        </div>
-    </div>
-
-    <!-- CARDÁPIO DO DIA (MOSTRADO AUTOMATICAMENTE) -->
-    <section class="cardapios-container" style="display: none;">
         <div id="cardapio-segunda" class="cardapio-dia">
             <div class="dia-tag">SEGUNDA</div>
             <span class="emoji-header">🍗🔥</span>
@@ -1142,7 +1102,7 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <h2>🎯 GARANTA SEU MARMITEZÃO DO DIA!</h2>
-        <p>🍚 <strong>Por apenas R$21,90</strong> você leva um marmitezão completo e saboroso!</p>
+        <p>🍚 <strong>Escolha seu tamanho ideal</strong> e tenha uma refeição completa!</p>
         <p>🔥 <strong>ESTOQUE LIMITADO:</strong> Apenas 30 kits disponíveis por dia. Quando acaba, ACABOU!</p>
         
         <a href="https://wa.me/5511999999999?text= 🎯%20QUERO%20GARANTIR%20MEU%20MARMITEZ%C3%83O%20DO%20DIA%21%20🍱%0A%0A👉%20VIM%20PELA%20PROMO%C3%87%C3%83O%20DO%20SITE%0A👉%20Quero%20o%20Marmitez%C3%A3o%20Completo%20por%20R%24%2021%2C90%0A👉%20Qual%20o%20card%C3%A1pio%20de%20hoje%3F%0A👉%20Qual%20o%20tempo%20de%20entrega%3F%0A%0A⏰%20N%C3%83O%20QUERO%20PERDER%20ESSA%20OFERTA%21" 
@@ -1160,31 +1120,16 @@
         <p>📞 Telefone: (11) 99999-9999 | 📍 Endereço: Rua da Fome, 123 - Centro</p>
     </footer>
 
-    <!-- Modal -->
-    <div id="modal-promocao" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>🎉 PROMOÇÃO CONFIRMADA! 🎉</h2>
-            <p>🍱 <strong>MARMITEZÃO COMPLETO DO DIA</strong> 🎯</p>
-            <p>Por apenas <strong>R$21,90</strong> você leva:</p>
-            <p>✅ Arroz, feijão, carne, salada, farofa caseira<br>
-               ✅ Ingredientes frescos e selecionados<br>
-               ✅ Entrega rápida em até 35min<br>
-               ✅ Cardápio diferente cada dia</p>
-            
-            <a href="https://wa.me/5511999999999?text= 🎉%20QUERO%20CONFIRMAR%20MEU%20MARMITEZ%C3%83O%20DO%20DIA%21%20🍱%0A%0A👉%20VIM%20PELO%20MODAL%20DO%20SITE%0A👉%20Quero%20o%20Marmitez%C3%A3o%20Completo%20por%20R%24%2021%2C90%0A👉%20Qual%20o%20card%C3%A1pio%20de%20hoje%3F%0A👉%20Manda%20o%20card%C3%A1pio%20completo%0A👉%20Qual%20o%20prazo%20de%20entrega%3F%0A%0A🚀%20QUERO%20MEU%20ALMO%C3%87O%20AGORA%21" 
-               class="btn-whatsapp-modal" target="_blank">
-                🚀 CONFIRMAR PEDIDO NO WHATSAPP
-            </a>
-        </div>
-    </div>
-
     <!-- Imagem escondida apenas para o WhatsApp -->
     <img class="whatsapp-preview-image" 
          src="https://anshulaprashad.github.io/marmitex/marmitex2.jpg" 
          alt="🍱 MARMITEZÃO COMPLETO DO DIA 🎯">
 
     <script>
+        // Variáveis globais para seleção
+        let tamanhoSelecionado = 'G';
+        let precoSelecionado = '21.90';
+
         // Timer de 25 minutos
         function startTimer(duration, display) {
             let timer = duration, minutes, seconds;
@@ -1219,66 +1164,48 @@
             orderCount += Math.floor(Math.random() * 3) + 1;
             if (orderCount > 60) orderCount = 40 + Math.floor(Math.random() * 10);
             
-            // Calcula quantos restam
             const remaining = Math.max(0, 30 - (orderCount - 48));
             document.getElementById('remainingOrders').textContent = remaining;
             
-            // Efeito quando estiver acabando
             if (remaining < 8) {
                 document.getElementById('remainingOrders').style.color = "#FFD700";
                 document.getElementById('remainingOrders').style.fontWeight = "900";
                 document.getElementById('remainingOrders').style.animation = "pulse 0.8s infinite";
             }
             
-            // Atualiza banner
             const bannerText = `🟢 ${orderCount}/60 vendidos hoje • ⚡ Últimas ${remaining} unidades!`;
             document.querySelector('marquee').textContent = bannerText + " • " + bannerText;
             
-        }, 30000); // Atualiza a cada 30 segundos
+        }, 30000);
 
-        // Slider automático de imagens
-        document.addEventListener('DOMContentLoaded', function () {
-            const slides = document.querySelectorAll('.slider-img');
-            let current = 0;
-
-            function showNextSlide() {
-                slides[current].classList.remove('active');
-                current = (current + 1) % slides.length;
-                slides[current].classList.add('active');
-            }
-
-            setInterval(showNextSlide, 3500);
-        });
-
-        // FUNÇÃO PARA SELECIONAR OPÇÃO DE MARMITEX
-        function selecionarOpcao(tamanho, preco) {
-            const cards = document.querySelectorAll('.opcao-card');
-            cards.forEach(card => {
-                card.classList.remove('destaque');
+        // FUNÇÕES PARA SELEÇÃO DE TAMANHO
+        function selecionarTamanho(tamanho, preco) {
+            tamanhoSelecionado = tamanho;
+            precoSelecionado = preco;
+            
+            // Remove seleção de todos os itens
+            document.querySelectorAll('.tamanho-item').forEach(item => {
+                item.classList.remove('selecionado');
             });
             
-            // Destaca o card selecionado
-            event.currentTarget.classList.add('destaque');
+            // Adiciona seleção ao item clicado
+            event.currentTarget.classList.add('selecionado');
             
-            // Atualiza a URL do WhatsApp com a opção selecionada
-            const mensagem = `🍱 QUERO O MARMITEX ${tamanho} POR R$ ${preco.replace('.', ',')}!\n\n👉 Tamanho: ${tamanho}\n👉 Preço: R$ ${preco.replace('.', ',')}\n👉 Quero o cardápio de hoje\n\n🚀 ENVIA MEU PEDIDO!`;
+            // Atualiza o texto do pedido selecionado
+            document.getElementById('tamanho-selecionado').textContent = `MARMITEX ${tamanho}`;
+            document.getElementById('preco-selecionado').textContent = `R$ ${preco.replace('.', ',')}`;
+            
+            // Atualiza o link do WhatsApp
+            atualizarLinkWhatsApp();
+        }
+
+        function atualizarLinkWhatsApp() {
+            const mensagem = `🍱 QUERO O MARMITEX ${tamanhoSelecionado} POR R$ ${precoSelecionado.replace('.', ',')}!\n\n👉 Tamanho: ${tamanhoSelecionado}\n👉 Preço: R$ ${precoSelecionado.replace('.', ',')}\n👉 Quero o cardápio de hoje\n\n🚀 ENVIA MEU PEDIDO!`;
             const url = `https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`;
             
-            // Atualiza todos os botões para a opção selecionada
-            const botoes = document.querySelectorAll('.opcao-btn');
-            botoes.forEach(botao => {
-                botao.href = url;
-            });
-            
-            // Destaque especial para o botão principal
-            const botaoPrincipal = document.querySelector('.btn-promocao-grande');
-            if (tamanho === 'G') {
-                botaoPrincipal.innerHTML = `🚀 QUERO MEU MARMITEZÃO G POR R$ ${preco.replace('.', ',')}!`;
-            } else if (tamanho === 'M') {
-                botaoPrincipal.innerHTML = `🚀 QUERO MEU MARMITEZÃO M POR R$ ${preco.replace('.', ',')}!`;
-            } else {
-                botaoPrincipal.innerHTML = `🚀 QUERO MEU MARMITEZÃO P POR R$ ${preco.replace('.', ',')}!`;
-            }
+            // Atualiza o link do botão
+            const btnWhatsApp = document.getElementById('btn-pedir-whatsapp');
+            btnWhatsApp.href = url;
         }
 
         // FUNÇÃO PARA EXIBIR APENAS O CARDÁPIO DO DIA
@@ -1289,40 +1216,44 @@
             ];
             
             const hoje = new Date();
-            const diaAtual = hoje.getDay(); // 0 = Domingo, 1 = Segunda, etc.
+            const diaAtual = hoje.getDay();
+            const diaNome = diasSemana[diaAtual];
             
-            // Se for domingo (0), não mostra cardápio
+            // Primeiro, esconder todos os cardápios
+            document.querySelectorAll('.cardapio-dia').forEach(el => {
+                el.style.display = 'none';
+                el.style.opacity = '0';
+            });
+            
+            // Se for domingo (0), mostra mensagem especial
             if (diaAtual === 0) {
+                atualizarTituloDomingo();
                 return;
             }
             
-            const cardapioId = `cardapio-${diasSemana[diaAtual]}`;
-            const container = document.querySelector('.cardapios-container');
+            // Atualiza o título da página com o dia
+            atualizarTituloComDia(diaNome);
             
-            if (container && document.getElementById(cardapioId)) {
-                // Exibe o container
-                container.style.display = 'block';
-                
-                // Esconde todos os cardápios
-                document.querySelectorAll('.cardapio-dia').forEach(el => {
-                    el.style.display = 'none';
-                });
-                
-                // Mostra apenas o cardápio do dia
-                const cardapioDoDia = document.getElementById(cardapioId);
+            // Busca o cardápio do dia
+            const cardapioId = `cardapio-${diaNome}`;
+            const cardapioDoDia = document.getElementById(cardapioId);
+            
+            if (cardapioDoDia) {
+                // Mostra o cardápio do dia com animação
                 cardapioDoDia.style.display = 'block';
                 
-                // Adiciona efeito especial
-                cardapioDoDia.style.animation = 'fadeIn 0.8s ease, highlightCard 3s ease-in-out infinite';
-                
-                // Atualiza o título da página com o dia
-                atualizarTituloComDia(diasSemana[diaAtual]);
+                setTimeout(() => {
+                    cardapioDoDia.style.transition = 'opacity 0.8s ease';
+                    cardapioDoDia.style.opacity = '1';
+                }, 50);
             }
         }
 
         // Função para atualizar o título com o dia atual
         function atualizarTituloComDia(dia) {
             const titulo = document.getElementById('titulo-dia');
+            const badge = document.getElementById('badge-dia');
+            
             if (titulo) {
                 const emojis = {
                     'segunda': '🍗',
@@ -1346,8 +1277,6 @@
                 titulo.innerHTML = `HOJE É ${nomesDias[dia]}! ${emoji}<br>ESTÁ COM FOME? NÃO ALMOÇOU?`;
             }
             
-            // Atualiza também o badge do dia
-            const badge = document.querySelector('.badge');
             if (badge) {
                 const nomesDiasCompletos = {
                     'segunda': 'Segunda-feira',
@@ -1362,60 +1291,129 @@
             }
         }
 
-        // Chama a função quando a página carrega
+        // Função para título de domingo
+        function atualizarTituloDomingo() {
+            const titulo = document.getElementById('titulo-dia');
+            const badge = document.getElementById('badge-dia');
+            
+            if (titulo) {
+                titulo.innerHTML = `HOJE É DOMINGO! 🎉<br>VOLTE AMANHÃ PELO CARDÁPIO!`;
+            }
+            
+            if (badge) {
+                badge.innerHTML = `🎯 VOLTE SEGUNDA PELO CARDÁPIO ESPECIAL!`;
+            }
+        }
+
+        // CÓDIGO DO CARROSSEL
+        let currentSlide = 0;
+        let slideInterval;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        
+        function initCarousel() {
+            // Criar dots de navegação
+            const dotsContainer = document.getElementById('carousel-dots');
+            dotsContainer.innerHTML = '';
+            
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('data-index', i);
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            
+            // Atualizar contador
+            document.getElementById('total-slides').textContent = totalSlides;
+            
+            // Iniciar auto-play
+            startAutoPlay();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = (index + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            resetAutoPlay();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoPlay();
+        }
+        
+        function updateCarousel() {
+            const track = document.getElementById('carousel-track');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            // Mover o track
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Atualizar dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            
+            // Atualizar contador
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+        
+        function startAutoPlay() {
+            slideInterval = setInterval(nextSlide, 3000); // 3 segundos
+        }
+        
+        function resetAutoPlay() {
+            clearInterval(slideInterval);
+            startAutoPlay();
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(slideInterval);
+        }
+        
+        // Pausar auto-play quando o mouse estiver sobre o carrossel
+        document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoPlay);
+        document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoPlay);
+
+        // Inicializar quando a página carrega
         document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar carrossel
+            initCarousel();
+            
+            // Inicializa o link do WhatsApp
+            atualizarLinkWhatsApp();
+            
+            // Mostra o cardápio do dia
             mostrarCardapioDoDia();
             
-            // Também atualiza a cada hora (caso o usuário deixe a página aberta)
-            setInterval(mostrarCardapioDoDia, 3600000); // 1 hora
+            // Efeito de digitação no título
+            const heroTitle = document.getElementById('titulo-dia');
+            if (heroTitle && heroTitle.innerHTML.trim() !== '') {
+                const originalText = heroTitle.innerHTML;
+                heroTitle.innerHTML = '';
+                
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < originalText.length) {
+                        heroTitle.innerHTML += originalText.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                
+                setTimeout(typeWriter, 500);
+            }
             
-            // Seleciona automaticamente o Marmitex G como padrão
-            setTimeout(() => {
-                const cardG = document.querySelector('.opcao-card.destaque');
-                if (cardG) {
-                    selecionarOpcao('G', '21.90');
-                }
-            }, 500);
+            // Atualiza a cada hora
+            setInterval(mostrarCardapioDoDia, 3600000);
         });
-
-        // Modal Functionality
-        document.getElementById('btn-promocao').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('modal-promocao').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        });
-
-        // Fechar modal
-        document.querySelector('.close-modal').addEventListener('click', function() {
-            document.getElementById('modal-promocao').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-
-        // Fechar modal clicando fora
-        window.addEventListener('click', function(e) {
-            const modal = document.getElementById('modal-promocao');
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Efeito de digitação no título
-        const heroTitle = document.querySelector('.hero h2');
-        const originalText = heroTitle.innerHTML;
-        
-        heroTitle.innerHTML = '';
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                heroTitle.innerHTML += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        };
-        
-        // Inicia efeito após carregamento
-        setTimeout(typeWriter, 1000);
     </script>
 </body>
 </html>
