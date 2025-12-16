@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marmitex da Casa - O Melhor Marmitex da Região com Cardápio Diário!</title>
+    
+    <!-- PRÉ-CARREGAMENTO CRÍTICO -->
+    <link rel="preload" href="https://anshulaprashad.github.io/marmitex/logorei.jpg" as="image" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- META TAGS -->
     <meta property="og:title" content="🍱 MARMITEZÃO DA CASA - CARDÁPIO DIÁRIO EXCLUSIVO!">
     <meta property="og:description" content="ESTÁ COM FOME? NÃO ALMOÇOU? 🍚 TENHO AQUI O MARMITEZÃO MAIS COMPLETO DA REGIÃO! ⭐⭐⭐⭐⭐ CARDÁPIO DIFERENTE CADA DIA!">
     <meta property="og:image" content="https://anshulaprashad.github.io/marmitex/marmitex2.jpg">
     <meta property="og:url" content="https://marmitex-premium.onrender.com">
     <meta property="og:type" content="website">
 
+    <!-- ESTILOS SPLASH SCREEN -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
+        /* VARIÁVEIS DE CORES */
         :root {
             --appetite-red: #FF3B30;
             --golden-yellow: #FFCC00;
@@ -29,6 +28,133 @@
             --card-bg: #2C2C2E;
             --text-light: #F5F5F5;
             --text-gray: #8E8E93;
+        }
+
+        /* 1. SPLASH SCREEN - TIMING PERFEITO (2.5s + 300ms) */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        
+        #splash-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* 2. LOGO COM ANIMAÇÃO SUTIL */
+        .splash-logo {
+            width: min(280px, 75vw);
+            height: auto;
+            animation: 
+                gentlePulse 2s ease-in-out infinite,
+                subtleFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+        }
+        
+        @keyframes gentlePulse {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.03); 
+                opacity: 0.95;
+            }
+        }
+        
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+        }
+        
+        /* 3. CARREGAMENTO SUTIL */
+        .splash-loader {
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 59, 48, 0.15);
+            border-radius: 2px;
+            margin: 15px auto 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .splash-loader::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--appetite-red), var(--golden-yellow));
+            animation: loadingBar 1.8s ease-in-out infinite;
+            border-radius: 2px;
+        }
+        
+        @keyframes loadingBar {
+            0%, 100% { 
+                left: 0%; 
+                width: 30%;
+            }
+            50% { 
+                left: 70%; 
+                width: 30%;
+            }
+        }
+        
+        /* 4. CONTEÚDO PRINCIPAL - APARECE SUAVEMENTE */
+        body > *:not(#splash-screen) {
+            opacity: 0;
+            animation: contentFadeIn 0.5s ease forwards;
+            animation-delay: 0.1s;
+        }
+        
+        @keyframes contentFadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* 5. GARANTIR QUE CONTEÚDO FIQUE ESCONDIDO INICIALMENTE */
+        body.has-splash {
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        body.splash-complete {
+            overflow: auto;
+            height: auto;
+        }
+        
+        .splash-content {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .splash-text {
+            margin-top: 12px;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+    </style>
+
+    <!-- ESTILOS PRINCIPAIS DA LANDING PAGE -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
@@ -171,23 +297,7 @@
             padding: 40px 5%;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 204, 0, 0.15), transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 59, 48, 0.15), transparent 50%);
-            animation: backgroundMove 20s ease infinite;
-        }
-
-        @keyframes backgroundMove {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(5deg); }
-        }
+        /* REMOVIDO: .hero::before (fundo animado com gradientes radiais) */
 
         .hero-content {
             max-width: 1200px;
@@ -964,7 +1074,26 @@
         }
     </style>
 </head>
-<body>
+<body class="has-splash">
+    <!-- SPLASH SCREEN OTIMIZADA -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <img src="https://anshulaprashad.github.io/marmitex/logorei.jpg" 
+                 alt="Marmitex da Casa - O Melhor Marmitex da Região"
+                 class="splash-logo"
+                 loading="eager"
+                 decoding="sync">
+            
+            <!-- Barra de carregamento sutil -->
+            <div class="splash-loader"></div>
+            
+            <!-- Texto sutil -->
+            <p class="splash-text">Preparando seu cardápio especial...</p>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL DA LANDING PAGE -->
+    
     <!-- Barra de Urgência -->
     <div class="urgency-bar">
         🚨 ATENÇÃO: MARMITEZÃO COMPLETO DO DIA! CARDÁPIO ESPECIAL! 🎯
@@ -1049,8 +1178,6 @@
             <!-- CARD ÚNICO COM OS 3 TAMANHOS - OTIMIZADO -->
             <div class="tamanhos-container">
                 <div class="tamanhos-card">
-                    <!-- TÍTULO E SUBTÍTULO REMOVIDOS AQUI -->
-                    
                     <div class="tamanhos-grid">
                         <!-- TAMANHO P -->
                         <div class="tamanho-item" onclick="selecionarTamanho('P', '17.90')">
@@ -1085,8 +1212,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- ÁREA DE PEDIDO REMOVIDA AQUI -->
                 </div>
             </div>
         </div>
@@ -1118,7 +1243,107 @@
          src="https://anshulaprashad.github.io/marmitex/marmitex2.jpg" 
          alt="🍱 MARMITEZÃO COMPLETO DO DIA 🎯">
 
+    <!-- JAVASCRIPT OTIMIZADO -->
     <script>
+        // ==================== SPLASH SCREEN ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            const splash = document.getElementById('splash-screen');
+            const logo = document.querySelector('.splash-logo');
+            const body = document.body;
+            
+            // CONFIGURAÇÃO DE TEMPO (ajuste fácil aqui)
+            const SPLASH_DURATION = 2500;     // 2.5 segundos de exibição
+            const FADE_DURATION = 300;        // 0.3 segundos de transição
+            
+            let splashTimer;
+            let splashStarted = false;
+            
+            // Função para iniciar o countdown da splash
+            function startSplashCountdown() {
+                if (splashStarted) return;
+                splashStarted = true;
+                
+                splashTimer = setTimeout(() => {
+                    // Efeito fade-out
+                    splash.classList.add('fade-out');
+                    
+                    // Remove splash e mostra conteúdo
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                        body.classList.remove('has-splash');
+                        body.classList.add('splash-complete');
+                        
+                        // Inicializa a landing page
+                        initLandingPage();
+                        
+                    }, FADE_DURATION);
+                    
+                }, SPLASH_DURATION);
+            }
+            
+            // Estratégia inteligente de carregamento
+            if (logo.complete && logo.naturalHeight !== 0) {
+                // Logo já carregou antes do JS
+                startSplashCountdown();
+            } else {
+                // Espera a logo carregar
+                logo.addEventListener('load', startSplashCountdown);
+                
+                // Fallback em caso de erro na imagem
+                logo.addEventListener('error', () => {
+                    console.log('Logo não carregou, continuando com splash...');
+                    startSplashCountdown();
+                });
+                
+                // Timeout de segurança (máximo 4 segundos)
+                setTimeout(startSplashCountdown, 4000);
+            }
+            
+            // Permite que o usuário pule a splash
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+                    clearTimeout(splashTimer);
+                    splash.classList.add('fade-out');
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                        body.classList.remove('has-splash');
+                        body.classList.add('splash-complete');
+                        initLandingPage();
+                    }, FADE_DURATION);
+                }
+            });
+            
+            document.addEventListener('click', () => {
+                if (splash.style.display !== 'none') {
+                    clearTimeout(splashTimer);
+                    splash.classList.add('fade-out');
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                        body.classList.remove('has-splash');
+                        body.classList.add('splash-complete');
+                        initLandingPage();
+                    }, FADE_DURATION);
+                }
+            }, { once: true });
+            
+            // Pré-carrega imagens importantes em background
+            window.addEventListener('load', function() {
+                const carouselImages = [
+                    'https://anshulaprashad.github.io/marmitex/marmita20.png',
+                    'https://anshulaprashad.github.io/marmitex/marmita21.png',
+                    'https://anshulaprashad.github.io/marmitex/marmita25.png',
+                    'https://anshulaprashad.github.io/marmitex/marmita24.png'
+                ];
+                
+                carouselImages.forEach(src => {
+                    const img = new Image();
+                    img.src = src;
+                });
+            });
+        });
+
+        // ==================== LANDING PAGE FUNCTIONS ====================
+        
         // Variáveis globais para seleção
         let tamanhoSelecionado = 'G';
         let precoSelecionado = '21.90';
@@ -1144,33 +1369,9 @@
             }, 1000);
         }
         
-        window.onload = function () {
-            const twentyFiveMinutes = 60 * 25;
-            const display = document.querySelector('#timer');
-            startTimer(twentyFiveMinutes, display);
-        };
-        
         // Contador de pedidos dinâmico
         let orderCount = 48;
         
-        setInterval(() => {
-            orderCount += Math.floor(Math.random() * 3) + 1;
-            if (orderCount > 60) orderCount = 40 + Math.floor(Math.random() * 10);
-            
-            const remaining = Math.max(0, 30 - (orderCount - 48));
-            document.getElementById('remainingOrders').textContent = remaining;
-            
-            if (remaining < 8) {
-                document.getElementById('remainingOrders').style.color = "#FFD700";
-                document.getElementById('remainingOrders').style.fontWeight = "900";
-                document.getElementById('remainingOrders').style.animation = "pulse 0.8s infinite";
-            }
-            
-            const bannerText = `🟢 ${orderCount}/60 vendidos hoje • ⚡ Últimas ${remaining} unidades!`;
-            document.querySelector('marquee').textContent = bannerText + " • " + bannerText;
-            
-        }, 30000);
-
         // FUNÇÕES PARA SELEÇÃO DE TAMANHO
         function selecionarTamanho(tamanho, preco) {
             tamanhoSelecionado = tamanho;
@@ -1199,7 +1400,7 @@
             }
         }
 
-        // FUNÇÃO PARA EXIBIR CARDÁPIO DO DIA NA NOVA POSIÇÃO
+        // FUNÇÃO PARA EXIBIR CARDÁPIO DO DIA
         function mostrarCardapioDoDia() {
             const diasSemana = [
                 'domingo', 'segunda', 'terca', 'quarta', 
@@ -1383,7 +1584,7 @@
             }
         }
 
-        // CÓDIGO DO CARROSSEL
+        // ==================== CARROSSEL ====================
         let currentSlide = 0;
         let slideInterval;
         const slides = document.querySelectorAll('.carousel-slide');
@@ -1463,15 +1664,44 @@
             carouselContainer.addEventListener('mouseleave', startAutoPlay);
         }
 
-        // Inicializar quando a página carrega
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicializar carrossel
+        // ==================== INICIALIZAÇÃO COMPLETA ====================
+        function initLandingPage() {
+            // Inicializa timer de 25 minutos
+            const twentyFiveMinutes = 60 * 25;
+            const display = document.querySelector('#timer');
+            if (display) startTimer(twentyFiveMinutes, display);
+            
+            // Inicializa contador de pedidos
+            setInterval(() => {
+                orderCount += Math.floor(Math.random() * 3) + 1;
+                if (orderCount > 60) orderCount = 40 + Math.floor(Math.random() * 10);
+                
+                const remaining = Math.max(0, 30 - (orderCount - 48));
+                const remainingElement = document.getElementById('remainingOrders');
+                if (remainingElement) {
+                    remainingElement.textContent = remaining;
+                    
+                    if (remaining < 8) {
+                        remainingElement.style.color = "#FFD700";
+                        remainingElement.style.fontWeight = "900";
+                    }
+                }
+                
+                const bannerText = `🟢 ${orderCount}/60 vendidos hoje • ⚡ Últimas ${remaining} unidades!`;
+                const marquee = document.querySelector('marquee');
+                if (marquee) {
+                    marquee.textContent = bannerText + " • " + bannerText;
+                }
+                
+            }, 30000);
+            
+            // Inicializa carrossel
             initCarousel();
             
-            // Inicializa o link do WhatsApp
+            // Inicializa link do WhatsApp
             atualizarLinkWhatsApp();
             
-            // Mostra o cardápio do dia
+            // Mostra cardápio do dia
             mostrarCardapioDoDia();
             
             // Efeito de digitação no título
@@ -1492,9 +1722,11 @@
                 setTimeout(typeWriter, 500);
             }
             
-            // Atualiza a cada hora
+            // Atualiza cardápio a cada hora
             setInterval(mostrarCardapioDoDia, 3600000);
-        });
+            
+            console.log('✅ Landing Page "Marmitex da Casa" inicializada com sucesso!');
+        }
     </script>
 </body>
 </html>
