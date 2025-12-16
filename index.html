@@ -190,7 +190,8 @@
         }
 
         .hero-content {
-            max-width: 700px;
+            max-width: 1200px;
+            width: 100%;
             z-index: 2;
             text-align: center;
         }
@@ -204,7 +205,7 @@
             font-size: 16px;
             font-weight: 900;
             display: inline-block;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             animation: badgePulse 2s infinite;
             text-transform: uppercase;
         }
@@ -221,10 +222,10 @@
         }
 
         .hero h2 {
-            font-size: clamp(2.8rem, 8vw, 4.8rem);
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             background: linear-gradient(135deg, #fff, var(--golden-yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -237,19 +238,22 @@
         }
 
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: var(--text-light);
-            margin-bottom: 40px;
-            line-height: 1.7;
+            margin-bottom: 30px;
+            line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* CARROSSEL PROFISSIONAL */
+        /* CARROSSEL EXPANDIDO - LARGURA TOTAL */
         .carousel-container {
             position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 40px auto;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            max-width: 100vw;
             overflow: hidden;
             border-radius: 25px;
             box-shadow: 
@@ -258,7 +262,9 @@
                 inset 0 0 70px rgba(0,0,0,0.4);
             border: 8px solid rgba(255, 204, 0, 0.4);
             background: rgba(28, 28, 30, 0.9);
-            height: 500px;
+            height: 550px;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         .carousel-track {
@@ -397,209 +403,40 @@
             border: 1px solid var(--golden-yellow);
         }
 
-        /* CARD ÚNICO COM 3 TAMANHOS */
-        .tamanhos-container {
+        /* CARDÁPIO DO DIA - NOVA POSIÇÃO (APÓS CARROSSEL) */
+        .cardapio-container-hero {
             max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 30px auto;
+            padding: 0 15px;
         }
 
-        .tamanhos-card {
-            background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(44, 44, 46, 0.9));
-            border: 3px solid var(--golden-yellow);
-            border-radius: 35px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            transform: perspective(1000px) rotateX(2deg);
-            transition: transform 0.3s ease;
-            box-shadow: 
-                0 25px 70px rgba(255, 204, 0, 0.4),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-        }
-
-        .tamanhos-card:hover {
-            transform: perspective(1000px) rotateX(0deg) translateY(-12px);
-        }
-
-        .tamanhos-card::before {
-            content: '🍱';
-            position: absolute;
-            top: -30px;
-            right: -30px;
-            font-size: 150px;
-            opacity: 0.1;
-            animation: rotate 15s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .tamanhos-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .tamanhos-header h3 {
-            font-size: 2.2rem;
-            color: var(--golden-yellow);
-            margin-bottom: 15px;
-        }
-
-        .tamanhos-header p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-        }
-
-        .tamanhos-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .tamanhos-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-        }
-
-        .tamanho-item {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-        }
-
-        .tamanho-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(255, 204, 0, 0.3);
-        }
-
-        .tamanho-item.selecionado {
-            border-color: var(--fresh-green);
-            background: rgba(52, 199, 89, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .tamanho-item.destaque {
-            border-color: var(--appetite-red);
-        }
-
-        .tamanho-tag {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: linear-gradient(135deg, var(--appetite-red), var(--golden-yellow));
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 12px;
-        }
-
-        .tamanho-icone {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .tamanho-nome {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--golden-yellow);
-            margin-bottom: 10px;
-        }
-
-        .tamanho-preco {
-            font-size: 2.8rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--golden-yellow), var(--appetite-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-            margin-bottom: 15px;
-        }
-
-        .tamanho-descricao {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        /* BOTÃO DE PEDIDO */
-        .pedido-final {
-            background: rgba(44, 44, 46, 0.8);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            border: 2px solid var(--golden-yellow);
-            margin-top: 30px;
-        }
-
-        .pedido-selecionado {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-
-        .pedido-selecionado strong {
-            color: var(--golden-yellow);
-        }
-
-        .btn-pedir-whatsapp {
-            display: block;
+        .cardapio-dia-hero {
             width: 100%;
-            padding: 20px;
-            background: linear-gradient(45deg, #25D366, #128C7E);
-            color: white;
-            font-size: 1.3rem;
-            font-weight: 900;
-            border-radius: 15px;
-            text-decoration: none;
-            border: 3px solid white;
-            transition: all 0.3s ease;
-            animation: pulseCta 2s infinite;
-        }
-
-        @keyframes pulseCta {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
-
-        .btn-pedir-whatsapp:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
-        }
-
-        /* CARDÁPIOS DIÁRIOS */
-        .cardapios-container {
-            max-width: 700px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-
-        .cardapio-dia {
             background: rgba(44, 44, 46, 0.95);
             border: 3px solid var(--golden-yellow);
             border-radius: 25px;
-            padding: 35px;
+            padding: 30px;
             text-align: center;
             animation: fadeIn 0.8s ease;
             box-shadow: 0 15px 40px rgba(255, 204, 0, 0.2);
             position: relative;
             overflow: hidden;
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
         }
 
-        .cardapio-dia::before {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cardapio-dia-hero.ativo {
+            display: block;
+            opacity: 1;
+        }
+
+        .cardapio-dia-hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -609,49 +446,49 @@
             background: linear-gradient(90deg, var(--appetite-red), var(--golden-yellow));
         }
 
-        .cardapio-dia h3 {
+        .cardapio-dia-hero h3 {
             color: var(--golden-yellow);
-            margin-bottom: 25px;
-            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .cardapio-dia ul {
+        .cardapio-dia-hero ul {
             text-align: left;
             padding-left: 25px;
-            font-size: 1.3rem;
-            line-height: 2;
+            font-size: 1.1rem;
+            line-height: 1.8;
             margin-bottom: 20px;
         }
 
-        .cardapio-dia li {
-            margin-bottom: 12px;
+        .cardapio-dia-hero li {
+            margin-bottom: 10px;
             position: relative;
             padding-left: 15px;
             color: var(--text-light);
         }
 
-        .cardapio-dia li::before {
+        .cardapio-dia-hero li::before {
             content: "✅ ";
             color: var(--fresh-green);
-            font-size: 1.2rem;
+            font-size: 1rem;
             position: absolute;
             left: -25px;
             top: 2px;
         }
 
-        .cardapio-dia p {
-            font-size: 1.3rem;
+        .cardapio-dia-hero p {
+            font-size: 1.1rem;
             color: var(--golden-yellow);
             font-weight: 700;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 12px;
+            border-radius: 12px;
             background: rgba(255, 204, 0, 0.1);
-            margin-top: 20px;
+            margin-top: 15px;
             border: 2px solid var(--golden-yellow);
         }
 
-        .dia-tag {
+        .dia-tag-hero {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -664,89 +501,331 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .cardapio-dia .emoji-header {
-            font-size: 3rem;
+        .cardapio-dia-hero .emoji-header {
+            font-size: 2.5rem;
             margin-bottom: 15px;
             display: block;
         }
 
-        /* FINAL CTA */
+        /* CARD ÚNICO COM 3 TAMANHOS - OTIMIZADO */
+        .tamanhos-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .tamanhos-card {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(44, 44, 46, 0.9));
+            border: 2px solid var(--golden-yellow);
+            border-radius: 25px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 15px 40px rgba(255, 204, 0, 0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .tamanhos-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tamanhos-card::before {
+            content: '🍱';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 100px;
+            opacity: 0.1;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .tamanhos-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .tamanhos-header h3 {
+            font-size: 1.5rem;
+            color: var(--golden-yellow);
+            margin-bottom: 10px;
+        }
+
+        .tamanhos-header p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        /* Grid mais compacto */
+        .tamanhos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .tamanhos-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        .tamanho-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tamanho-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.2);
+        }
+
+        .tamanho-item.selecionado {
+            border-color: var(--fresh-green);
+            background: rgba(52, 199, 89, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .tamanho-item.destaque {
+            border-color: var(--appetite-red);
+        }
+
+        .tamanho-tag {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: linear-gradient(135deg, var(--appetite-red), var(--golden-yellow));
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 10px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .tamanho-icone {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .tamanho-nome {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--golden-yellow);
+            margin-bottom: 8px;
+        }
+
+        .tamanho-preco {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--golden-yellow), var(--appetite-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .tamanho-descricao {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            line-height: 1.3;
+            margin-top: auto;
+        }
+
+        /* ÁREA DE PEDIDO OTIMIZADA */
+        .pedido-final {
+            background: rgba(44, 44, 46, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid var(--golden-yellow);
+            margin-top: 20px;
+        }
+
+        .pedido-selecionado {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .pedido-selecionado strong {
+            color: var(--golden-yellow);
+        }
+
+        /* BOTÃO OTIMIZADO PARA MOBILE */
+        .btn-pedir-whatsapp {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            font-size: 1rem;
+            font-weight: 900;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-pedir-whatsapp:active {
+            transform: scale(0.98);
+        }
+
+        .btn-pedir-whatsapp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        /* FINAL CTA - BOTÃO OTIMIZADO */
         .final-cta {
             max-width: 850px;
-            margin: 100px auto;
-            padding: 50px 5%;
+            margin: 60px auto;
+            padding: 40px 5%;
             text-align: center;
             background: linear-gradient(135deg, rgba(139, 69, 19, 0.8), rgba(28, 28, 30, 0.9));
             border: 3px solid var(--golden-yellow);
-            border-radius: 45px;
+            border-radius: 35px;
             position: relative;
             overflow: hidden;
         }
 
-        .final-cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 204, 0, 0.2), transparent 70%);
-            animation: rotate 25s linear infinite;
-        }
-
         .final-cta h2 {
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             position: relative;
             z-index: 1;
             color: var(--golden-yellow);
             text-transform: uppercase;
         }
 
+        @media (max-width: 768px) {
+            .final-cta h2 {
+                font-size: 1.8rem;
+            }
+        }
+
         .final-cta p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: white;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
             z-index: 1;
-            line-height: 1.8;
+            line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        .whatsapp-btn {
+        @media (max-width: 768px) {
+            .final-cta p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* BOTÃO FINAL OTIMIZADO PARA MOBILE */
+        .whatsapp-btn-final {
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
-            padding: 22px 45px;
-            border-radius: 35px;
+            padding: 18px 35px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 900;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+            gap: 12px;
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             z-index: 1;
-            border: 3px solid white;
+            border: 2px solid white;
             text-transform: uppercase;
+            text-align: center;
         }
 
-        .whatsapp-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 25px 60px rgba(37, 211, 102, 0.7);
+        .whatsapp-btn-final:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 18px 45px rgba(37, 211, 102, 0.7);
         }
 
-        .whatsapp-btn i {
-            font-size: 28px;
+        .whatsapp-btn-final i {
+            font-size: 24px;
+        }
+
+        /* Media queries específicas para o botão final */
+        @media (max-width: 768px) {
+            .whatsapp-btn-final {
+                padding: 16px 25px;
+                font-size: 1rem;
+                gap: 10px;
+                border-radius: 25px;
+            }
+            
+            .whatsapp-btn-final i {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .whatsapp-btn-final {
+                padding: 14px 20px;
+                font-size: 0.9rem;
+                gap: 8px;
+                border-radius: 20px;
+                width: 90%;
+                margin: 0 auto;
+                display: block;
+            }
+            
+            .whatsapp-btn-final i {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .whatsapp-btn-final {
+                padding: 12px 15px;
+                font-size: 0.85rem;
+                gap: 6px;
+                border-radius: 18px;
+            }
+            
+            .whatsapp-btn-final i {
+                font-size: 16px;
+            }
         }
 
         .urgency-text {
-            margin-top: 35px;
+            margin-top: 30px;
             color: var(--appetite-red);
             font-weight: 900;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             position: relative;
             z-index: 1;
             animation: blink 1.5s infinite;
@@ -784,8 +863,11 @@
         /* RESPONSIVO */
         @media (max-width: 768px) {
             .carousel-container {
-                height: 350px;
-                max-width: 90%;
+                height: 400px;
+                border-radius: 20px;
+                border-width: 6px;
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
             
             .tamanhos-card {
@@ -793,7 +875,7 @@
             }
             
             .tamanhos-header h3 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
             
             .tamanho-preco {
@@ -801,7 +883,12 @@
             }
             
             .hero h2 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
             }
 
             .btn-pedir-whatsapp {
@@ -814,19 +901,19 @@
                 gap: 20px;
             }
 
-            .cardapio-dia {
-                padding: 25px;
+            .cardapio-dia-hero {
+                padding: 20px;
             }
 
-            .cardapio-dia h3 {
-                font-size: 1.8rem;
+            .cardapio-dia-hero h3 {
+                font-size: 1.5rem;
             }
 
-            .cardapio-dia ul {
-                font-size: 1.1rem;
+            .cardapio-dia-hero ul {
+                font-size: 1rem;
             }
 
-            .dia-tag {
+            .dia-tag-hero {
                 top: 10px;
                 right: 10px;
                 padding: 6px 15px;
@@ -846,16 +933,130 @@
             .carousel-nav.next {
                 right: 10px;
             }
+            
+            .slide-counter {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
         }
         
         @media (max-width: 480px) {
             .carousel-container {
-                height: 280px;
+                height: 300px;
+                border-width: 4px;
             }
             
             .carousel-dot {
                 width: 8px;
                 height: 8px;
+            }
+            
+            /* Correções específicas para telas muito pequenas */
+            .tamanhos-card {
+                padding: 20px 15px;
+                border-radius: 20px;
+            }
+            
+            .tamanhos-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .tamanho-item {
+                padding: 15px 10px;
+                min-height: 160px;
+            }
+            
+            .tamanho-nome {
+                font-size: 1.1rem;
+            }
+            
+            .tamanho-preco {
+                font-size: 1.6rem;
+            }
+            
+            .btn-pedir-whatsapp {
+                padding: 14px;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+            
+            .pedido-final {
+                padding: 15px;
+            }
+            
+            .pedido-selecionado {
+                font-size: 0.9rem;
+                flex-direction: column;
+                gap: 3px;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+            
+            .badge {
+                padding: 10px 20px;
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .cardapio-dia-hero {
+                padding: 15px;
+            }
+            
+            .cardapio-dia-hero h3 {
+                font-size: 1.3rem;
+            }
+            
+            .cardapio-dia-hero ul {
+                font-size: 0.9rem;
+                padding-left: 20px;
+            }
+        }
+
+        /* Para telas muito pequenas (iPhone SE etc) */
+        @media (max-width: 320px) {
+            .btn-pedir-whatsapp {
+                font-size: 0.85rem;
+                padding: 12px 8px;
+                white-space: normal;
+                line-height: 1.2;
+            }
+            
+            .tamanho-nome {
+                font-size: 1rem;
+            }
+            
+            .tamanho-preco {
+                font-size: 1.4rem;
+            }
+            
+            .carousel-container {
+                height: 250px;
+            }
+        }
+
+        /* Melhorias para desktop também */
+        @media (min-width: 1024px) {
+            .tamanhos-card {
+                padding: 30px;
+            }
+            
+            .btn-pedir-whatsapp {
+                padding: 18px;
+                font-size: 1.1rem;
+            }
+            
+            .carousel-container {
+                height: 600px;
+            }
+            
+            .whatsapp-btn-final {
+                padding: 20px 40px;
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -897,14 +1098,12 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="badge" id="badge-dia">🎯 PROMOÇÃO RELÂMPAGO: CARDÁPIO ESPECIAL DO DIA!</div>
+            <!-- Conteúdo simplificado -->
+            <div class="badge" id="badge-dia">🎯 CARDÁPIO ESPECIAL DO DIA!</div>
             
             <h2 id="titulo-dia"></h2>
             
-            <p>🍚 <strong>TENHO AQUI O MARMITEZÃO MAIS COMPLETO DA REGIÃO!</strong> ⭐⭐⭐⭐⭐</p>
-            <p>🎁 <strong>CARDÁPIO ESPECIAL:</strong> Menu diferente cada dia da semana!</p>
-
-            <!-- CARROSSEL PROFISSIONAL -->
+            <!-- Carrossel em largura total -->
             <div class="carousel-container">
                 <div class="steam-effect">
                     <div class="steam-particle"></div>
@@ -944,7 +1143,14 @@
                 </div>
             </div>
 
-            <!-- CARD ÚNICO COM OS 3 TAMANHOS -->
+            <!-- CARDÁPIO DO DIA - NOVA POSIÇÃO (após o carrossel) -->
+            <div class="cardapio-container-hero">
+                <div id="cardapio-dia-hero" class="cardapio-dia-hero">
+                    <!-- Cardápio será inserido dinamicamente via JavaScript -->
+                </div>
+            </div>
+
+            <!-- CARD ÚNICO COM OS 3 TAMANHOS - OTIMIZADO -->
             <div class="tamanhos-container">
                 <div class="tamanhos-card">
                     <div class="tamanhos-header">
@@ -987,7 +1193,7 @@
                         </div>
                     </div>
                     
-                    <!-- ÁREA DE PEDIDO -->
+                    <!-- ÁREA DE PEDIDO OTIMIZADA -->
                     <div class="pedido-final">
                         <div class="pedido-selecionado">
                             🛒 <strong>PEDIDO SELECIONADO:</strong> 
@@ -1004,110 +1210,15 @@
         </div>
     </section>
 
-    <!-- CARDÁPIO DO DIA -->
-    <section class="cardapios-container">
-        <!-- Cardápios serão mostrados dinamicamente via JavaScript -->
-        
-        <div id="cardapio-segunda" class="cardapio-dia">
-            <div class="dia-tag">SEGUNDA</div>
-            <span class="emoji-header">🍗🔥</span>
-            <h3>🍽️ Segunda Energética</h3>
-            <ul>
-                <li>🍚 Arroz Branco Soltinho</li>
-                <li>🥘 Feijão Tropeiro Especial</li>
-                <li>🍗 Frango Grelhado com Limão Siciliano</li>
-                <li>🥗 Salada Crocante de Alface e Tomate</li>
-                <li>🌾 Farofa de Banana Dourada</li>
-                <li>🌿 Tempero Caseiro da Vovó</li>
-            </ul>
-            <p>⚡ Comece a semana com energia! ⚡</p>
-        </div>
-
-        <div id="cardapio-terca" class="cardapio-dia">
-            <div class="dia-tag">TERÇA</div>
-            <span class="emoji-header">🥩🍲</span>
-            <h3>🍽️ Terça Caseira</h3>
-            <ul>
-                <li>🍚 Arroz de Forno com Ervas Finas</li>
-                <li>🥘 Feijão Carioca Cremoso</li>
-                <li>🥩 Carne de Panela Desfiada com Legumes</li>
-                <li>🥗 Salada de Rúcula Fresca com Cenoura Ralada</li>
-                <li>🌾 Farofa Crocante Caseira</li>
-                <li>🧄 Molho Especial de Alho</li>
-            </ul>
-            <p>🏠 Sabor que lembra casa da vovó! 🏠</p>
-        </div>
-
-        <div id="cardapio-quarta" class="cardapio-dia">
-            <div class="dia-tag">QUARTA</div>
-            <span class="emoji-header">🐔🌶️</span>
-            <h3>🍽️ Quarta Temperada</h3>
-            <ul>
-                <li>🍚 Arroz Integral Nutritivo</li>
-                <li>🥘 Feijão Preto da Fazenda</li>
-                <li>🐔 Moqueca de Frango Cremosa</li>
-                <li>🥗 Salada de Folhas Verdes com Molho de Iogurte</li>
-                <li>🌾 Farofa de Ovo Caipira</li>
-                <li>🌶️ Toque Especial de Pimenta</li>
-            </ul>
-            <p>🔥 Para esquentar o meio da semana! 🔥</p>
-        </div>
-
-        <div id="cardapio-quinta" class="cardapio-dia">
-            <div class="dia-tag">QUINTA</div>
-            <span class="emoji-header">🥓🍳</span>
-            <h3>🍽️ Quinta Clássica</h3>
-            <ul>
-                <li>🍚 Arroz à Grega com Especiarias</li>
-                <li>🥘 Feijão com Linguiça Artesanal</li>
-                <li>🥩 Bife à Milanesa Crocante</li>
-                <li>🥗 Salada de Pepino e Tomate Cereja</li>
-                <li>🌾 Farofa de Bacon Defumado</li>
-                <li>🧀 Queijo Ralado por Cima</li>
-            </ul>
-            <p>👨‍🍳 Clássico que nunca sai de moda! 👨‍🍳</p>
-        </div>
-
-        <div id="cardapio-sexta" class="cardapio-dia">
-            <div class="dia-tag">SEXTA</div>
-            <span class="emoji-header">🐷🎉</span>
-            <h3>🍽️ Sexta Saborosa</h3>
-            <ul>
-                <li>🍚 Arroz com Milho e Ervilha Fresca</li>
-                <li>🥘 Feijoada Light Completa</li>
-                <li>🐷 Costelinha Suína ao Molho Barbecue</li>
-                <li>🥗 Salada de Couve com Vinagrete</li>
-                <li>🌾 Farofa de Laranja Perfumada</li>
-                <li>🍊 Gomos de Laranja para Acompanhar</li>
-            </ul>
-            <p>🎉 Prévia do fim de semana! 🎉</p>
-        </div>
-
-        <div id="cardapio-sabado" class="cardapio-dia">
-            <div class="dia-tag">SÁBADO</div>
-            <span class="emoji-header">🍝🌟</span>
-            <h3>🍽️ Sábado Especial</h3>
-            <ul>
-                <li>🍚 Arroz com Ervilha e Cenoura em Cubos</li>
-                <li>🥘 Feijão Tropeiro Completo</li>
-                <li>🍝 Lasanha de Carne Mussarela</li>
-                <li>🥗 Salada de Alface, Tomate e Ovo Cozido</li>
-                <li>🌾 Farofa de Linguiça Calabresa</li>
-                <li>🧀 Camada Extra de Queijo Derretido</li>
-            </ul>
-            <p>🌟 Final de semana com sabor especial! 🌟</p>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
+    <!-- Final CTA com botão otimizado -->
     <section class="final-cta">
         <h2>🎯 GARANTA SEU MARMITEZÃO DO DIA!</h2>
         <p>🍚 <strong>Escolha seu tamanho ideal</strong> e tenha uma refeição completa!</p>
         <p>🔥 <strong>ESTOQUE LIMITADO:</strong> Apenas 30 kits disponíveis por dia. Quando acaba, ACABOU!</p>
         
         <a href="https://wa.me/5511999999999?text= 🎯%20QUERO%20GARANTIR%20MEU%20MARMITEZ%C3%83O%20DO%20DIA%21%20🍱%0A%0A👉%20VIM%20PELA%20PROMO%C3%87%C3%83O%20DO%20SITE%0A👉%20Quero%20o%20Marmitez%C3%A3o%20Completo%20por%20R%24%2021%2C90%0A👉%20Qual%20o%20card%C3%A1pio%20de%20hoje%3F%0A👉%20Qual%20o%20tempo%20de%20entrega%3F%0A%0A⏰%20N%C3%83O%20QUERO%20PERDER%20ESSA%20OFERTA%21" 
-           class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> QUERO MEU MARMITEZÃO AGORA!
+           class="whatsapp-btn-final" target="_blank">
+            <i class="fab fa-whatsapp"></i> QUERO MEU MARMITEZÃO AGORA
         </a>
         
         <p class="urgency-text">⚠️ ULTIMAS UNIDADES: Apenas <span id="remainingOrders">12</span> marmitex disponíveis!</p>
@@ -1208,7 +1319,7 @@
             btnWhatsApp.href = url;
         }
 
-        // FUNÇÃO PARA EXIBIR APENAS O CARDÁPIO DO DIA
+        // FUNÇÃO PARA EXIBIR CARDÁPIO DO DIA NA NOVA POSIÇÃO
         function mostrarCardapioDoDia() {
             const diasSemana = [
                 'domingo', 'segunda', 'terca', 'quarta', 
@@ -1219,11 +1330,93 @@
             const diaAtual = hoje.getDay();
             const diaNome = diasSemana[diaAtual];
             
-            // Primeiro, esconder todos os cardápios
-            document.querySelectorAll('.cardapio-dia').forEach(el => {
-                el.style.display = 'none';
-                el.style.opacity = '0';
-            });
+            // Cardápios para cada dia
+            const cardapios = {
+                'segunda': {
+                    tag: 'SEGUNDA',
+                    emoji: '🍗🔥',
+                    titulo: '🍽️ Segunda Energética',
+                    itens: [
+                        '🍚 Arroz Branco Soltinho',
+                        '🥘 Feijão Tropeiro Especial',
+                        '🍗 Frango Grelhado com Limão Siciliano',
+                        '🥗 Salada Crocante de Alface e Tomate',
+                        '🌾 Farofa de Banana Dourada',
+                        '🌿 Tempero Caseiro da Vovó'
+                    ],
+                    mensagem: '⚡ Comece a semana com energia! ⚡'
+                },
+                'terca': {
+                    tag: 'TERÇA',
+                    emoji: '🥩🍲',
+                    titulo: '🍽️ Terça Caseira',
+                    itens: [
+                        '🍚 Arroz de Forno com Ervas Finas',
+                        '🥘 Feijão Carioca Cremoso',
+                        '🥩 Carne de Panela Desfiada com Legumes',
+                        '🥗 Salada de Rúcula Fresca com Cenoura Ralada',
+                        '🌾 Farofa Crocante Caseira',
+                        '🧄 Molho Especial de Alho'
+                    ],
+                    mensagem: '🏠 Sabor que lembra casa da vovó! 🏠'
+                },
+                'quarta': {
+                    tag: 'QUARTA',
+                    emoji: '🐔🌶️',
+                    titulo: '🍽️ Quarta Temperada',
+                    itens: [
+                        '🍚 Arroz Integral Nutritivo',
+                        '🥘 Feijão Preto da Fazenda',
+                        '🐔 Moqueca de Frango Cremosa',
+                        '🥗 Salada de Folhas Verdes com Molho de Iogurte',
+                        '🌾 Farofa de Ovo Caipira',
+                        '🌶️ Toque Especial de Pimenta'
+                    ],
+                    mensagem: '🔥 Para esquentar o meio da semana! 🔥'
+                },
+                'quinta': {
+                    tag: 'QUINTA',
+                    emoji: '🥓🍳',
+                    titulo: '🍽️ Quinta Clássica',
+                    itens: [
+                        '🍚 Arroz à Grega com Especiarias',
+                        '🥘 Feijão com Linguiça Artesanal',
+                        '🥩 Bife à Milanesa Crocante',
+                        '🥗 Salada de Pepino e Tomate Cereja',
+                        '🌾 Farofa de Bacon Defumado',
+                        '🧀 Queijo Ralado por Cima'
+                    ],
+                    mensagem: '👨‍🍳 Clássico que nunca sai de moda! 👨‍🍳'
+                },
+                'sexta': {
+                    tag: 'SEXTA',
+                    emoji: '🐷🎉',
+                    titulo: '🍽️ Sexta Saborosa',
+                    itens: [
+                        '🍚 Arroz com Milho e Ervilha Fresca',
+                        '🥘 Feijoada Light Completa',
+                        '🐷 Costelinha Suína ao Molho Barbecue',
+                        '🥗 Salada de Couve com Vinagrete',
+                        '🌾 Farofa de Laranja Perfumada',
+                        '🍊 Gomos de Laranja para Acompanhar'
+                    ],
+                    mensagem: '🎉 Prévia do fim de semana! 🎉'
+                },
+                'sabado': {
+                    tag: 'SÁBADO',
+                    emoji: '🍝🌟',
+                    titulo: '🍽️ Sábado Especial',
+                    itens: [
+                        '🍚 Arroz com Ervilha e Cenoura em Cubos',
+                        '🥘 Feijão Tropeiro Completo',
+                        '🍝 Lasanha de Carne Mussarela',
+                        '🥗 Salada de Alface, Tomate e Ovo Cozido',
+                        '🌾 Farofa de Linguiça Calabresa',
+                        '🧀 Camada Extra de Queijo Derretido'
+                    ],
+                    mensagem: '🌟 Final de semana com sabor especial! 🌟'
+                }
+            };
             
             // Se for domingo (0), mostra mensagem especial
             if (diaAtual === 0) {
@@ -1235,16 +1428,30 @@
             atualizarTituloComDia(diaNome);
             
             // Busca o cardápio do dia
-            const cardapioId = `cardapio-${diaNome}`;
-            const cardapioDoDia = document.getElementById(cardapioId);
+            const cardapioDoDia = cardapios[diaNome];
+            const cardapioContainer = document.getElementById('cardapio-dia-hero');
             
-            if (cardapioDoDia) {
-                // Mostra o cardápio do dia com animação
-                cardapioDoDia.style.display = 'block';
+            if (cardapioDoDia && cardapioContainer) {
+                // Gera o HTML do cardápio
+                let itensHTML = '';
+                cardapioDoDia.itens.forEach(item => {
+                    itensHTML += `<li>${item}</li>`;
+                });
+                
+                const cardapioHTML = `
+                    <div class="dia-tag-hero">${cardapioDoDia.tag}</div>
+                    <span class="emoji-header">${cardapioDoDia.emoji}</span>
+                    <h3>${cardapioDoDia.titulo}</h3>
+                    <ul>${itensHTML}</ul>
+                    <p>${cardapioDoDia.mensagem}</p>
+                `;
+                
+                // Insere o cardápio e mostra com animação
+                cardapioContainer.innerHTML = cardapioHTML;
+                cardapioContainer.classList.add('ativo');
                 
                 setTimeout(() => {
-                    cardapioDoDia.style.transition = 'opacity 0.8s ease';
-                    cardapioDoDia.style.opacity = '1';
+                    cardapioContainer.style.opacity = '1';
                 }, 50);
             }
         }
@@ -1278,16 +1485,7 @@
             }
             
             if (badge) {
-                const nomesDiasCompletos = {
-                    'segunda': 'Segunda-feira',
-                    'terca': 'Terça-feira',
-                    'quarta': 'Quarta-feira',
-                    'quinta': 'Quinta-feira',
-                    'sexta': 'Sexta-feira',
-                    'sabado': 'Sábado'
-                };
-                
-                badge.innerHTML = `🎯 CARDÁPIO DE ${nomesDiasCompletos[dia].toUpperCase()}!`;
+                badge.innerHTML = `🎯 CARDÁPIO DE ${dia.toUpperCase()}!`;
             }
         }
 
@@ -1379,8 +1577,11 @@
         }
         
         // Pausar auto-play quando o mouse estiver sobre o carrossel
-        document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoPlay);
-        document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoPlay);
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+            carouselContainer.addEventListener('mouseleave', startAutoPlay);
+        }
 
         // Inicializar quando a página carrega
         document.addEventListener('DOMContentLoaded', function() {
